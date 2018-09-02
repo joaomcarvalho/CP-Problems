@@ -37,12 +37,10 @@ void build(int id, int l, int r) {
             segTree[2][id] = NEUTRO;
         }
         else if (s[l] == '(') {
-            //cout << "ID" << id << endl;
             segTree[0][id] = NEUTRO;
             segTree[1][id] = 1;
             segTree[2][id] = NEUTRO;
         } else {
-            //cout << "ID" << id << endl;
             segTree[0][id] = NEUTRO;
             segTree[1][id] = NEUTRO;
             segTree[2][id] = 1;
@@ -56,7 +54,6 @@ void build(int id, int l, int r) {
         segTree[0][id] = segTree[0][2 * id + 1] + segTree[0][2 * id + 2] + min(segTree[1][2 * id + 1], segTree[2][2 * id + 2]);
         segTree[1][id] = segTree[1][2 * id + 1] + segTree[1][2 * id + 2] - min(segTree[1][2 * id + 1], segTree[2][2 * id + 2]);
         segTree[2][id] = segTree[2][2 * id + 1] + segTree[2][2 * id + 2] - min(segTree[1][2 * id + 1], segTree[2][2 * id + 2]);
-        //cout << "id: " << id << " " << segTree[0][id] << " " << segTree[1][id] << " " << segTree[2][id] << endl;
     }
 }
 
@@ -79,6 +76,7 @@ pair<int, pair<int,int>> query(int id, int l, int r, int x, int y) {
 int main() {
     cin >> s;
     n = s.length();
+    
     n--;
     n |= n >> 1;
     n |= n >> 2;
@@ -86,15 +84,9 @@ int main() {
     n |= n >> 8;
     n |= n >> 16;
     n++;
-   // cout << n << endl;
 
     build(0,0,n-1);
-//    int id = 8;
-//    cout << "id: " << id << " " << segTree[0][id] << " " << segTree[1][id] << " " << segTree[2][id] << endl;
-//    id = 17;
-//    cout << "id: " << id << " " << segTree[0][id] << " " << segTree[1][id] << " " << segTree[2][id] << endl;
-//    id = 18;
-//    cout << "id: " << id << " " << segTree[0][id] << " " << segTree[1][id] << " " << segTree[2][id] << endl;
+
     int m;
     cin >> m;
     int l, r;
@@ -103,7 +95,6 @@ int main() {
         l--;
         r--;
         pair <int, pair<int, int>> ans = query(0,0,n-1,l,r);
-        //cout << ans.first << " " << ans.second.first << " " << ans.second.second << endl;
         cout << ans.first * 2 << endl;
     }
 
